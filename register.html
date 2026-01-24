@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for Activities - Activity Hub</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Register Page - Same Pattern as Home */
+        .hero-section {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(135deg, var(--cream-linen) 0%, var(--warm-stone) 100%);
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1492724441997-5dc865305da7') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .section-bg {
+            background: rgba(217, 206, 193, 0.2);
+            backdrop-filter: blur(5px);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+        }
+        
+        .register-container {
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .register-panel {
+            background: rgba(244, 239, 230, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(191, 168, 138, 0.2);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-warm);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            margin: 0 auto;
+        }
+        
+        .register-panel h1 {
+            color: var(--charcoal-brown);
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 500;
+        }
+        
+        .register-panel p {
+            color: var(--charcoal-brown);
+            opacity: 0.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--spacing-md);
+            gap: var(--spacing-sm);
+        }
+        
+        .step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.4);
+        }
+        
+        .step-line {
+            width: 40px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            margin-top: 19px;
+        }
+        
+        .register-form .form-control {
+            margin-bottom: var(--spacing-sm);
+            padding: 12px 16px;
+            font-size: 1rem;
+        }
+        
+        .register-form .form-label {
+            color: var(--charcoal-brown);
+            font-weight: 500;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .form-check {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .form-check-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+        
+        .form-check-input {
+            margin-top: 0.4rem;
+        }
+        
+        .btn-register {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            background: var(--terracotta);
+            border: none;
+            border-radius: var(--radius-lg);
+            color: var(--cream-linen);
+            font-weight: 500;
+            box-shadow: var(--shadow-gentle);
+            transition: all 0.4s ease;
+            margin-top: var(--spacing-sm);
+        }
+        
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-warm);
+            background: #9a5d35;
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: var(--spacing-sm);
+            color: var(--charcoal-brown);
+            opacity: 0.8;
+        }
+        
+        .login-link a {
+            color: var(--terracotta);
+            font-weight: 500;
+            text-decoration: underline;
+        }
+        
+        .register-panel a {
+            transition: all 0.3s ease;
+        }
+        
+        .register-panel a:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+        
+        .register-panel a h3:hover {
+            color: var(--terracotta);
+        }
+        
+        @media (max-width: 992px) {
+            .register-split {
+                grid-template-columns: 1fr;
+            }
+            
+            .register-illustration {
+                order: 2;
+            }
+            
+            .register-panel {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <!-- Register Section -->
+    <section class="section-padding section-bg">
+        <div class="register-container">
+            <div class="register-panel">
+                <a href="index.html" style="display: inline-block; margin-bottom: var(--spacing-md); text-decoration: none;">
+                    <h3 style="color: var(--charcoal-brown); font-family: 'Playfair Display', serif; font-weight: 600; margin: 0;">
+                        <i class="fas fa-calendar-check"></i> Activity Hub
+                    </h3>
+                </a>
+                <h1><i class="fas fa-user-plus"></i> Register for Activities</h1>
+                <p>Create your account and start exploring activities</p>
+                    
+                    <form id="registerForm" class="register-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name *</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name *</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Password *</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password *</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-register">
+                            <i class="fas fa-calendar-check"></i> Register for Activities
+                        </button>
+                    </form>
+                    
+                    <div class="login-link">
+                    Already have an account? <a href="login.html">Login here</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
+

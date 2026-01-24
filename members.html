@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership - Activity Hub</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Members Page - Same Pattern as Home */
+        .hero-section {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(135deg, var(--cream-linen) 0%, var(--warm-stone) 100%);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero-glass {
+            background: rgba(244, 239, 230, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(191, 168, 138, 0.2);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-warm);
+            text-align: center;
+            color: var(--charcoal-brown);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-glass h1 {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--charcoal-brown);
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .filter-section {
+            background: rgba(244, 239, 230, 0.9);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-lg);
+            border: 1px solid rgba(191, 168, 138, 0.2);
+            box-shadow: var(--shadow-gentle);
+        }
+
+        .filter-chip {
+            display: inline-block;
+            padding: 8px 20px;
+            margin: 5px;
+            background: rgba(244, 239, 230, 0.8);
+            border: 1px solid rgba(191, 168, 138, 0.3);
+            border-radius: 25px;
+            color: var(--charcoal-brown);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 400;
+        }
+
+        .filter-chip:hover,
+        .filter-chip.active {
+            background: rgba(168, 104, 61, 0.15);
+            border-color: var(--terracotta);
+            transform: translateY(-2px);
+            color: var(--terracotta);
+        }
+
+        .member-card {
+            background: rgba(244, 239, 230, 0.9);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(191, 168, 138, 0.2);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            text-align: center;
+            color: var(--charcoal-brown);
+            transition: all 0.5s ease;
+            height: 100%;
+            box-shadow: var(--shadow-gentle);
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-warm);
+            border-color: rgba(191, 168, 138, 0.3);
+        }
+
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto var(--spacing-sm);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .member-role {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .member-tags {
+            margin-top: var(--spacing-sm);
+        }
+
+        .tag-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            margin: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sort-section {
+            text-align: right;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .sort-select {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius-md);
+            padding: 10px 20px;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-calendar-check"></i> Activity Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="home2.html">Home 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="members.html">Membership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-primary" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-outline-secondary" id="darkModeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-glass">
+                <h1>Our Members</h1>
+                <p style="font-size: 1.2rem; letter-spacing: 0.3px; color: var(--charcoal-brown); line-height: 1.8;">
+                    Meet the amazing members of our Activity Hub community</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Perks Section -->
+    <section class="section-padding">
+        <div class="container text-center">
+            <h2 class="mb-5" style="color: var(--charcoal-brown);">Membership Perks</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="modern-card">
+                        <i class="fas fa-ticket-alt fa-2x mb-3" style="color: var(--primary-purple);"></i>
+                        <h4 style="color: var(--charcoal-brown);">Priority Booking</h4>
+                        <p style="font-size: 0.9rem;">Get early access to all our events and workshops before they sell
+                            out.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="modern-card">
+                        <i class="fas fa-percent fa-2x mb-3" style="color: var(--primary-pink);"></i>
+                        <h4 style="color: var(--charcoal-brown);">Exclusive Discounts</h4>
+                        <p style="font-size: 0.9rem;">Enjoy up to 25% off on activity fees and merchandise.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="modern-card">
+                        <i class="fas fa-coffee fa-2x mb-3" style="color: var(--accent-orange);"></i>
+                        <h4 style="color: var(--charcoal-brown);">Lounge Access</h4>
+                        <p style="font-size: 0.9rem;">Relax and network in our exclusive premium member lounges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters & Sort -->
+    <section class="section-padding section-bg">
+        <div class="container">
+            <div class="filter-section">
+                <div class="text-center mb-3">
+                    <h4 style="color: var(--text-light); margin-bottom: var(--spacing-sm);">Filter by Category</h4>
+                </div>
+                <div class="text-center">
+                    <span class="filter-chip active filter-btn" onclick="filterItems('all', this)">All Members</span>
+                    <span class="filter-chip filter-btn" onclick="filterItems('founder', this)">Founders</span>
+                    <span class="filter-chip filter-btn" onclick="filterItems('developer', this)">Developers</span>
+                    <span class="filter-chip filter-btn" onclick="filterItems('designer', this)">Designers</span>
+                    <span class="filter-chip filter-btn"
+                        onclick="filterItems('entrepreneur', this)">Entrepreneurs</span>
+                    <span class="filter-chip filter-btn" onclick="filterItems('mentor', this)">Mentors</span>
+                </div>
+            </div>
+
+            <div class="sort-section">
+                <select class="sort-select">
+                    <option>Sort by: Newest</option>
+                    <option>Sort by: Oldest</option>
+                    <option>Sort by: Name A-Z</option>
+                    <option>Sort by: Name Z-A</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Grid -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Member 1 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 filter-item" data-category="founder">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&h=300&fit=crop"
+                            alt="Member" class="member-avatar">
+                        <h4 class="member-name" style="color: var(--charcoal-brown);">Alex Thompson</h4>
+                        <p class="member-role" style="color: var(--terracotta); opacity: 0.8;">Founder & CEO</p>
+                        <p style="font-size: 0.9rem; color: var(--charcoal-brown); opacity: 0.8;">Passionate about
+                            building communities</p>
+                        <div class="member-tags">
+                            <span class="tag-badge">Leadership</span>
+                            <span class="tag-badge">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 filter-item" data-category="developer">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop"
+                            alt="Member" class="member-avatar">
+                        <h4 class="member-name">David Kim</h4>
+                        <p class="member-role">Full Stack Developer</p>
+                        <p style="font-size: 0.9rem; opacity: 0.9;">Tech enthusiast and problem solver</p>
+                        <div class="member-tags">
+                            <span class="tag-badge">JavaScript</span>
+                            <span class="tag-badge">React</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 filter-item" data-category="designer">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop"
+                            alt="Member" class="member-avatar">
+                        <h4 class="member-name">Emma Wilson</h4>
+                        <p class="member-role">UI/UX Designer</p>
+                        <p style="font-size: 0.9rem; opacity: 0.9;">Creating beautiful user experiences</p>
+                        <div class="member-tags">
+                            <span class="tag-badge">Design</span>
+                            <span class="tag-badge">Figma</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 filter-item" data-category="entrepreneur">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop"
+                            alt="Member" class="member-avatar">
+                        <h4 class="member-name">James Rodriguez</h4>
+                        <p class="member-role">Entrepreneur</p>
+                        <p style="font-size: 0.9rem; opacity: 0.9;">Building the next big thing</p>
+                        <div class="member-tags">
+                            <span class="tag-badge">Startup</span>
+                            <span class="tag-badge">Business</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 5 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 filter-item" data-category="mentor">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop"
+                            alt="Member" class="member-avatar">
+                        <h4 class="member-name">Lisa Chen</h4>
+                        <p class="member-role">Mentor & Advisor</p>
+                        <p style="font-size: 0.9rem; opacity: 0.9;">Helping others grow and succeed</p>
+                        <div class="member-tags">
+                            <span class="tag-badge">Mentoring</span>
+                            <span class="tag-badge">Coaching</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 6 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 filter-item" data-category="developer">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=300&fit=crop"
+                            alt="Member" class="member-avatar">
+                        <h4 class="member-name">Michael Brown</h4>
+                        <p class="member-role">Backend Developer</p>
+                        <p style="font-size: 0.9rem; opacity: 0.9;">Building scalable systems</p>
+                        <div class="member-tags">
+                            <span class="tag-badge">Python</span>
+                            <span class="tag-badge">AWS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 7 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 filter-item" data-category="designer">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop"
+                            alt="Member" class="member-avatar">
+                        <h4 class="member-name">Sophia Martinez</h4>
+                        <p class="member-role">Graphic Designer</p>
+                        <p style="font-size: 0.9rem; opacity: 0.9;">Visual storytelling expert</p>
+                        <div class="member-tags">
+                            <span class="tag-badge">Branding</span>
+                            <span class="tag-badge">Illustration</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 8 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 filter-item" data-category="entrepreneur">
+                    <div class="member-card">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&h=300&fit=crop"
+                            alt="Member" class="member-avatar">
+                        <h4 class="member-name">Ryan Taylor</h4>
+                        <p class="member-role">Startup Founder</p>
+                        <p style="font-size: 0.9rem; opacity: 0.9;">Turning ideas into reality</p>
+                        <div class="member-tags">
+                            <span class="tag-badge">Innovation</span>
+                            <span class="tag-badge">Tech</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5><i class="fas fa-calendar-check"></i> Activity Hub</h5>
+                    <p>Your premier platform for activity registration and membership management.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Activities</a></li>
+                        <li><a href="members.html">Membership</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <p class="mt-3">
+                        <i class="fas fa-envelope"></i> hello@activityhub.com<br>
+                        <i class="fas fa-phone"></i> +44 (0) 20 1234 5678
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Activity Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
