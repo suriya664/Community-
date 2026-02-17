@@ -17,7 +17,9 @@
     --accent-orange: #F97316;
     --accent-teal: #14B8A6;
     --accent-green: #10B981;
-    
+    --terracotta: #E07A5F;
+    --charcoal-brown: #363537;
+
     /* Neutral Palette */
     --white: #FFFFFF;
     --gray-50: #F9FAFB;
@@ -30,33 +32,33 @@
     --gray-700: #374151;
     --gray-800: #1F2937;
     --gray-900: #111827;
-    
+
     /* Modern Gradients */
     --primary-gradient: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
     --accent-gradient: linear-gradient(135deg, #F97316 0%, #EC4899 100%);
     --success-gradient: linear-gradient(135deg, #10B981 0%, #14B8A6 100%);
     --dark-gradient: linear-gradient(135deg, #1F2937 0%, #111827 100%);
     --light-gradient: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%);
-    
+
     /* Glassmorphism */
     --glass-bg: rgba(255, 255, 255, 0.25);
     --glass-border: rgba(255, 255, 255, 0.18);
     --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     --glass-backdrop: blur(16px);
-    
+
     /* Modern Shadows */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    
+
     /* Text Colors */
     --text-primary: #111827;
     --text-secondary: #6B7280;
     --text-light: #F9FAFB;
     --text-accent: #4F46E5;
-    
+
     /* Spacing System */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
@@ -64,7 +66,7 @@
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
-    
+
     /* Border Radius System */
     --radius-sm: 0.375rem;
     --radius-md: 0.5rem;
@@ -72,7 +74,7 @@
     --radius-xl: 1rem;
     --radius-2xl: 1.5rem;
     --radius-full: 9999px;
-    
+
     /* Animation */
     --transition-fast: 0.15s ease;
     --transition-normal: 0.3s ease;
@@ -105,6 +107,19 @@ body {
 body.dark-mode {
     background: #111827;
     color: #F9FAFB;
+
+    /* Re-assign variables for Dark Mode */
+    --text-primary: #F9FAFB;
+    --text-secondary: #D1D5DB;
+    --charcoal-brown: #F3F4F6;
+    --white: #1F2937;
+    --gray-50: #111827;
+    --glass-bg: rgba(31, 41, 55, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow-gentle: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+
+    /* Ensure gradients work in dark mode or are adjusted */
+    --light-gradient: linear-gradient(135deg, #111827 0%, #1F2937 100%);
 }
 
 /* Animated Background */
@@ -115,7 +130,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
+    background:
         radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.3) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.3) 0%, transparent 50%),
         radial-gradient(circle at 40% 40%, rgba(249, 115, 22, 0.2) 0%, transparent 50%);
@@ -125,9 +140,19 @@ body::before {
 }
 
 @keyframes gradientShift {
-    0%, 100% { transform: translateX(0) translateY(0); }
-    33% { transform: translateX(-20px) translateY(-20px); }
-    66% { transform: translateX(20px) translateY(-10px); }
+
+    0%,
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+
+    33% {
+        transform: translateX(-20px) translateY(-20px);
+    }
+
+    66% {
+        transform: translateX(20px) translateY(-10px);
+    }
 }
 
 /* ============================================
@@ -313,6 +338,34 @@ a:hover {
     font-weight: 600;
     margin-bottom: var(--spacing-md);
     color: var(--white);
+}
+
+.footer-brand {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--white) !important;
+    letter-spacing: -0.01em;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    text-decoration: none;
+}
+
+.footer-brand i {
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+}
+
+.footer-brand:hover {
+    transform: translateY(-2px);
+    color: var(--white);
+}
+
+.footer-brand:hover i {
+    color: var(--primary-purple);
 }
 
 .footer a {
@@ -582,29 +635,29 @@ a:hover {
     h1 {
         font-size: 2rem;
     }
-    
+
     h2 {
         font-size: 1.75rem;
     }
-    
+
     h3 {
         font-size: 1.25rem;
     }
-    
+
     .btn {
         padding: 10px 20px;
         font-size: 0.875rem;
     }
-    
+
     .navbar-nav {
         text-align: center;
         padding-top: var(--spacing-md);
     }
-    
+
     .glass-card {
         padding: var(--spacing-lg);
     }
-    
+
     .modern-card {
         padding: var(--spacing-lg);
     }
@@ -614,20 +667,20 @@ a:hover {
     h1 {
         font-size: 1.75rem;
     }
-    
+
     h2 {
         font-size: 1.5rem;
     }
-    
+
     .container {
         padding-left: var(--spacing-md);
         padding-right: var(--spacing-md);
     }
-    
+
     .glass-card {
         padding: var(--spacing-md);
     }
-    
+
     .modern-card {
         padding: var(--spacing-md);
     }
@@ -675,6 +728,7 @@ a:hover {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -685,6 +739,7 @@ a:hover {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -695,6 +750,7 @@ a:hover {
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -702,9 +758,12 @@ a:hover {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.05);
     }

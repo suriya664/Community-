@@ -241,6 +241,26 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.dashboard-card').forEach(card => card.classList.toggle('dark-mode'));
         document.querySelectorAll('.activity-panel').forEach(panel => panel.classList.toggle('dark-mode'));
         document.querySelectorAll('.btn-header').forEach(btn => btn.classList.toggle('dark-mode'));
+        
+        // Toggle Icon
+        const icon = this.querySelector('i');
+        if (isDark) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+        
         localStorage.setItem('darkMode', isDark);
     });
+    
+    // Set initial icon state
+    if (isDarkMode) {
+        const icon = document.getElementById('darkModeToggle').querySelector('i');
+        if(icon) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
 });
