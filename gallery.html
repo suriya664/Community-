@@ -201,9 +201,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="members.html">Membership</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="events.html">Events</a>
                     </li>
@@ -217,7 +215,9 @@
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                        <a class="nav-link" href="dashboard.html" title="Dashboard">
+                            <i class="fas fa-th-large"></i>
+                        </a>
                     </li>
                     <li class="nav-item ms-lg-2">
                         <a class="btn btn-primary" href="login.html">Login</a>
@@ -249,23 +249,42 @@
             <h2 class="mb-5" style="color: var(--charcoal-brown);">Global Story Highlights</h2>
             <div class="row g-4">
                 <div class="col-md-6">
-                    <div class="modern-card">
-                        <div class="ratio ratio-16x9 mb-3">
-                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Community Story"
-                                allowfullscreen></iframe>
+                    <div class="modern-card p-0 overflow-hidden h-100">
+                        <div class="ratio ratio-16x9" style="position: relative; overflow: hidden; background: #000;">
+                            <!-- Blurred Background to effectively fill the gap -->
+                            <div
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://marinesanctuary.org/wp-content/uploads/2024/10/Screenshot-2024-10-27-at-9.16.50-PM-e1730089633142.jpg') center/cover; filter: blur(15px); opacity: 0.6; transform: scale(1.1);">
+                            </div>
+                            <!-- Full un-cropped image on top -->
+                            <img src="https://the-engine.transforms.svdcdn.com/production/impact-report-home-page-highlight_2025-01-18-012444_eoqt.jpg?w=1800&q=82&auto=format&fit=crop&crop=focalpoint&fp-x=0.4751&fp-y=0.7613&dm=1755030198&s=d4bd004ef6f5f5f01b59b8738e2ed64b"
+                                alt="Our 2024 Impact" class="w-100 h-100"
+                                style="object-fit: contain; position: relative; z-index: 2;">
                         </div>
-                        <h4 style="color: var(--charcoal-brown);">Our 2024 Impact</h4>
-                        <p style="font-size: 0.9rem;">A visual journey through the lives we've touched this year.</p>
+                        <div class="p-4">
+                            <h4 style="color: var(--charcoal-brown);">Our 2024 Impact</h4>
+                            <p style="font-size: 0.9rem; margin-bottom: 0;">A visual journey through the lives we've
+                                touched this year.
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="modern-card">
-                        <div class="ratio ratio-16x9 mb-3">
-                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Member Interview"
-                                allowfullscreen></iframe>
+                    <div class="modern-card p-0 overflow-hidden h-100">
+                        <div class="ratio ratio-16x9" style="position: relative; overflow: hidden; background: #000;">
+                            <!-- Blurred Background to effectively fill the gap -->
+                            <div
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://simpaticolife.com/wp-content/uploads/2023/06/SarahM-822x1024.jpg') center/cover; filter: blur(15px); opacity: 0.6; transform: scale(1.1);">
+                            </div>
+                            <!-- Full un-cropped image on top -->
+                            <img src="https://images.squarespace-cdn.com/content/v1/5f9e6fb1feb0a607c81349b7/5e776b4a-2c02-4ce5-8808-dd4fc2c2d393/2024-2025+Impact+Reporting+%281%29.png"
+                                alt="Meet Sarah Mitchell" class="w-100 h-100"
+                                style="object-fit: contain; position: relative; z-index: 2;">
                         </div>
-                        <h4 style="color: var(--charcoal-brown);">Meet Sarah Mitchell</h4>
-                        <p style="font-size: 0.9rem;">How Activity Hub changed Sarah's professional life.</p>
+                        <div class="p-4">
+                            <h4 style="color: var(--charcoal-brown);">Meet Sarah Mitchell</h4>
+                            <p style="font-size: 0.9rem; margin-bottom: 0;">How Activity Hub changed Sarah's
+                                professional life.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -299,7 +318,7 @@
 
                 <!-- Image 2 -->
                 <div class="masonry-item filter-item" data-category="meetups">
-                    <img src="https://images.unsplash.com/photo-1540575493047-4beba4d4fb0?w=400&h=500&fit=crop&auto=format"
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNh8G2zetjErQcwJ1Vw0CdKZZWsedGlWA8CQ&s"
                         alt="Meetup">
                     <div class="overlay">
                         <i class="fas fa-search-plus fa-2x"></i>
@@ -317,8 +336,7 @@
 
                 <!-- Image 4 -->
                 <div class="masonry-item filter-item" data-category="sports">
-                    <img src="https://images.unsplash.com/photo-1571019673264-07da434d1e1?w=400&h=550&fit=crop&auto=format"
-                        alt="Sports">
+                    <img src="https://corvuss.in/wp-content/uploads/5.jpeg" alt="Sports">
                     <div class="overlay">
                         <i class="fas fa-search-plus fa-2x"></i>
                     </div>
