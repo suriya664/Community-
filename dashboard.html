@@ -500,21 +500,25 @@
         /* Responsive Design */
         @media (max-width: 1024px) {
             .sidebar-panel {
-                width: 240px;
+                width: 260px;
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100vh;
+                z-index: 1040;
+                transform: translateX(-100%);
+            }
+
+            .sidebar-panel.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                padding: 4rem 1.5rem 2rem;
             }
         }
 
         @media (max-width: 768px) {
-            .dashboard-wrapper {
-                flex-direction: column;
-            }
-
-            .sidebar-panel {
-                width: 100%;
-                border-right: none;
-                border-bottom: 1px solid rgba(79, 70, 229, 0.1);
-            }
-
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
@@ -523,6 +527,7 @@
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
+                margin-top: 1rem;
             }
 
             .header-actions {
@@ -535,18 +540,49 @@
                 padding: 8px 12px;
             }
 
-            .dashboard-card {
-                /* Prevent overflow */
-                word-wrap: break-word;
+            /* Fix Activity Overlap */
+            .activity-item {
+                flex-wrap: wrap;
+                padding: 1.25rem;
+                gap: 1rem;
+                height: auto;
+            }
+
+            .activity-content {
+                flex: 1 1 100%;
+                margin-bottom: 0.5rem;
+            }
+
+            .activity-status {
+                margin-left: 55px;
+                /* Alignment with content */
+                width: fit-content;
+            }
+
+            .activity-icon {
+                margin-bottom: 0.5rem;
+            }
+
+            .page-title {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Sidebar Toggle for Mobile -->
+    <button id="sidebar-toggle" class="d-lg-none"
+        style="position: fixed; top: 15px; left: 15px; z-index: 1050; width: 45px; height: 45px; border-radius: 12px; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); border: none; color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div id="sidebar-backdrop"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1030; display: none; backdrop-filter: blur(4px);">
+    </div>
+
     <div class="dashboard-wrapper">
         <!-- Sidebar Panel -->
-        <aside class="sidebar-panel">
+        <aside class="sidebar-panel" id="sidebar-panel">
             <div class="sidebar-header">
                 <a href="index.html" class="d-flex align-items-center gap-3 text-decoration-none">
                     <div class="logo-icon">
@@ -574,10 +610,7 @@
                     <i class="fas fa-calendar nav-icon"></i>
                     <span>My Activities</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-crown nav-icon"></i>
-                    <span>Membership</span>
-                </a>
+
                 <a href="#" class="nav-item">
                     <i class="fas fa-trophy nav-icon"></i>
                     <span>Achievements</span>
@@ -815,6 +848,30 @@
                 e.preventDefault();
                 document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
                 this.classList.add('active');
+            });
+        });
+        // Sidebar Toggle Logic
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarPanel = document.getElementById('sidebar-panel');
+        const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+        const sidebarToggleIcon = sidebarToggle.querySelector('i');
+
+        function toggleSidebar() {
+            sidebarPanel.classList.toggle('active');
+            sidebarBackdrop.style.display = sidebarPanel.classList.contains('active') ? 'block' : 'none';
+            sidebarToggleIcon.classList.toggle('fa-bars');
+            sidebarToggleIcon.classList.toggle('fa-times');
+        }
+
+        sidebarToggle.addEventListener('click', toggleSidebar);
+        sidebarBackdrop.addEventListener('click', toggleSidebar);
+
+        // Close sidebar on navigation item click (on mobile)
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function () {
+                if (window.innerWidth <= 1024) {
+                    toggleSidebar();
+                }
             });
         });
     </script>

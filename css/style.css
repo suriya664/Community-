@@ -92,6 +92,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -663,6 +664,91 @@ a:hover {
     }
 }
 
+/* Single row navbar for 1440*900 viewport */
+@media (min-width: 1440px) {
+    .navbar {
+        padding: 0.5rem 0;
+        height: 80px;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar .container {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        position: relative !important;
+        max-width: 1440px !important;
+        width: 100% !important;
+        padding: 0 40px !important;
+    }
+
+    .navbar-brand {
+        position: absolute !important;
+        left: 40px !important;
+        margin: 0 !important;
+        z-index: 100 !important;
+    }
+
+    .navbar-collapse {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        flex-basis: auto !important;
+        position: static !important;
+        transform: none !important;
+    }
+
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 20px !important;
+        /* Balanced gap */
+        margin: 0 !important;
+        width: auto !important;
+        white-space: nowrap !important;
+    }
+
+    /* Center Group (Home through Contact) */
+    .navbar-nav .nav-item:nth-child(-n+7) {
+        position: static !important;
+        margin: 0 !important;
+    }
+
+    /* Right Utility Group (8: Dashboard, 9: Login, 10: Theme) */
+    .navbar-nav .nav-item:nth-child(8),
+    .navbar-nav .nav-item:nth-child(9),
+    .navbar-nav .nav-item:nth-child(10) {
+        position: absolute !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin: 0 !important;
+        z-index: 100 !important;
+    }
+
+    .navbar-nav .nav-item:nth-child(10) {
+        right: 40px !important;
+        /* Theme toggle at the very edge */
+    }
+
+    .navbar-nav .nav-item:nth-child(9) {
+        right: 110px !important;
+        /* Login button */
+    }
+
+    .navbar-nav .nav-item:nth-child(8) {
+        right: 230px !important;
+        /* Dashboard icon */
+    }
+
+    .navbar-nav .nav-link {
+        padding: 10px 15px !important;
+        white-space: nowrap !important;
+    }
+}
+
 @media (max-width: 576px) {
     h1 {
         font-size: 1.75rem;
@@ -677,14 +763,31 @@ a:hover {
         padding-right: var(--spacing-md);
     }
 
-    .glass-card {
+    .glass-card,
+    .modern-card,
+    .hero-glass {
         padding: var(--spacing-md);
     }
 
-    .modern-card {
-        padding: var(--spacing-md);
+    img {
+        max-width: 100%;
+        height: auto;
     }
 }
+
+.section-padding {
+    padding: var(--spacing-xl) 0;
+}
+
+.hero-section {
+    padding: var(--spacing-xl) 0;
+    min-height: auto;
+}
+
+.stat-number {
+    font-size: 2rem;
+}
+
 
 /* ============================================
    UTILITY CLASSES
