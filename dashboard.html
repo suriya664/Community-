@@ -507,6 +507,7 @@
                 height: 100vh;
                 z-index: 1040;
                 transform: translateX(-100%);
+                overflow-y: auto;
             }
 
             .sidebar-panel.active {
@@ -584,7 +585,7 @@
 <body>
     <!-- Sidebar Toggle for Mobile -->
     <button id="sidebar-toggle" class="sidebar-toggler-btn"
-        style="position: fixed; top: 15px; right: 15px; z-index: 1050; width: 45px; height: 45px; border-radius: 12px; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); border: none; color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        style="position: fixed; top: 15px; right: 15px; z-index: 1050; width: 45px; height: 45px; border-radius: 12px; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); border: none; color: white; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
         <i class="fas fa-bars"></i>
     </button>
     <div id="sidebar-backdrop"
@@ -637,10 +638,16 @@
             </nav>
 
             <div class="logout-section">
-                <a href="#" class="logout-btn" onclick="handleLogout()">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span>
-                </a>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="#" class="logout-btn" onclick="handleLogout()" style="flex: 1;">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                    <button class="theme-toggle-btn" id="desktopThemeToggle" title="Toggle Dark Mode"
+                        style="width: 48px; height: 48px; flex-shrink: 0;">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
             </div>
         </aside>
 

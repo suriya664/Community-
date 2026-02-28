@@ -227,40 +227,41 @@ document.addEventListener('DOMContentLoaded', function() {
 // Dark Mode Toggle Functionality
 document.addEventListener('DOMContentLoaded', function() {
     const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+    // Apply dark mode on load if saved
     if (isDarkMode) {
         document.body.classList.add('dark-mode');
-        document.querySelector('.navbar').classList.add('dark-mode');
-        document.querySelectorAll('.dashboard-card').forEach(card => card.classList.add('dark-mode'));
-        document.querySelectorAll('.activity-panel').forEach(panel => panel.classList.add('dark-mode'));
-        document.querySelectorAll('.btn-header').forEach(btn => btn.classList.add('dark-mode'));
     }
 
-    document.getElementById('darkModeToggle').addEventListener('click', function() {
-        const isDark = document.body.classList.toggle('dark-mode');
-        document.querySelector('.navbar').classList.toggle('dark-mode');
-        document.querySelectorAll('.dashboard-card').forEach(card => card.classList.toggle('dark-mode'));
-        document.querySelectorAll('.activity-panel').forEach(panel => panel.classList.toggle('dark-mode'));
-        document.querySelectorAll('.btn-header').forEach(btn => btn.classList.toggle('dark-mode'));
-        
-        // Toggle Icon
-        const icon = this.querySelector('i');
-        if (isDark) {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        }
-        
-        localStorage.setItem('darkMode', isDark);
-    });
-    
-    // Set initial icon state
-    if (isDarkMode) {
-        const icon = document.getElementById('darkModeToggle').querySelector('i');
-        if(icon) {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
+    // Helper: update all toggle button icons across the page
+    function syncAllIcons(isDark) {
+        const allToggles = document.querySelectorAll('#darkModeToggle, #desktopThemeToggle');
+        allToggles.forEach(function(btn) {
+            const icon = btn.querySelector('i');
+            if (!icon) return;
+            if (isDark) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
     }
+
+    // Shared toggle function
+    function toggleDarkMode() {
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', isDark);
+        syncAllIcons(isDark);
+    }
+
+    // Attach click handler to all toggle buttons
+    const allToggles = document.querySelectorAll('#darkModeToggle, #desktopThemeToggle');
+    allToggles.forEach(function(btn) {
+        btn.addEventListener('click', toggleDarkMode);
+    });
+
+    // Set initial icon state
+    syncAllIcons(isDarkMode);
 });

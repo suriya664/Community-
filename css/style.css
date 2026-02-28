@@ -115,12 +115,375 @@ body.dark-mode {
     --charcoal-brown: #F3F4F6;
     --white: #1F2937;
     --gray-50: #111827;
+    --gray-100: #1F2937;
+    --gray-200: #374151;
+    --gray-300: #4B5563;
     --glass-bg: rgba(31, 41, 55, 0.7);
     --glass-border: rgba(255, 255, 255, 0.1);
     --shadow-gentle: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
 
     /* Ensure gradients work in dark mode or are adjusted */
     --light-gradient: linear-gradient(135deg, #111827 0%, #1F2937 100%);
+}
+
+/* ============================================
+   THEME TOGGLE BUTTON
+   ============================================ */
+.theme-toggle-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--gray-300);
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-normal);
+    padding: 0;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--primary-gradient);
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+body.dark-mode .theme-toggle-btn {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #F9FAFB;
+}
+
+body.dark-mode .theme-toggle-btn:hover {
+    background: var(--accent-gradient);
+    border-color: transparent;
+}
+
+/* ============================================
+   DARK MODE - COMPREHENSIVE OVERRIDES
+   ============================================ */
+
+/* Animated Background - darker in dark mode */
+body.dark-mode::before {
+    background:
+        radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
+}
+
+/* Navbar dark mode */
+body.dark-mode .navbar {
+    background: rgba(17, 24, 39, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .navbar-brand {
+    color: #F9FAFB !important;
+}
+
+body.dark-mode .navbar-nav .nav-link {
+    color: #F9FAFB !important;
+}
+
+body.dark-mode .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23F9FAFB' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Card types - dark backgrounds */
+body.dark-mode .glass-card,
+body.dark-mode .modern-card,
+body.dark-mode .floating-card,
+body.dark-mode .stat-card,
+body.dark-mode .testimonial-card,
+body.dark-mode .event-card,
+body.dark-mode .member-card,
+body.dark-mode .blog-card,
+body.dark-mode .team-card,
+body.dark-mode .timeline-item {
+    background: rgba(31, 41, 55, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: #F9FAFB !important;
+}
+
+body.dark-mode .glass-card h2,
+body.dark-mode .glass-card h3,
+body.dark-mode .glass-card h4,
+body.dark-mode .glass-card p,
+body.dark-mode .modern-card h2,
+body.dark-mode .modern-card h3,
+body.dark-mode .modern-card h4,
+body.dark-mode .modern-card p,
+body.dark-mode .floating-card h2,
+body.dark-mode .floating-card h3,
+body.dark-mode .floating-card h4,
+body.dark-mode .floating-card p,
+body.dark-mode .stat-card h2,
+body.dark-mode .stat-card h3,
+body.dark-mode .stat-card h4,
+body.dark-mode .stat-card p,
+body.dark-mode .testimonial-card p,
+body.dark-mode .testimonial-card h5,
+body.dark-mode .team-card h4,
+body.dark-mode .team-card p,
+body.dark-mode .timeline-item h4,
+body.dark-mode .timeline-item p {
+    color: #F3F4F6 !important;
+}
+
+/* Section backgrounds */
+body.dark-mode .section-bg {
+    background: rgba(17, 24, 39, 0.6) !important;
+}
+
+body.dark-mode .stats-section {
+    background: rgba(17, 24, 39, 0.7) !important;
+}
+
+/* Hero sections */
+body.dark-mode .hero-section {
+    background: linear-gradient(135deg, #111827 0%, #1F2937 100%) !important;
+}
+
+body.dark-mode .hero-glass {
+    background: rgba(31, 41, 55, 0.85) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .hero-glass p {
+    color: #D1D5DB !important;
+    text-shadow: none !important;
+}
+
+/* Form elements */
+body.dark-mode .form-control {
+    background: #1F2937 !important;
+    border-color: #374151 !important;
+    color: #F9FAFB !important;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #6B7280 !important;
+}
+
+body.dark-mode .form-label {
+    color: #F3F4F6 !important;
+}
+
+body.dark-mode .form-check-label {
+    color: #F3F4F6 !important;
+}
+
+body.dark-mode .form-check-input {
+    background-color: #374151;
+    border-color: #4B5563;
+}
+
+/* Offcanvas dark mode */
+body.dark-mode .offcanvas {
+    background-color: #1F2937 !important;
+    color: #F9FAFB !important;
+}
+
+body.dark-mode .offcanvas-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .offcanvas .offcanvas-title {
+    color: #F9FAFB !important;
+}
+
+body.dark-mode .offcanvas .btn-close {
+    filter: invert(1);
+}
+
+body.dark-mode .offcanvas .nav-link {
+    color: #F9FAFB !important;
+}
+
+/* Auth pages (login/register) */
+body.dark-mode .login-box,
+body.dark-mode .register-panel {
+    background: rgba(31, 41, 55, 0.92) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .login-box h1,
+body.dark-mode .login-box p,
+body.dark-mode .login-box .form-label,
+body.dark-mode .login-box .navbar-brand,
+body.dark-mode .register-panel h1,
+body.dark-mode .register-panel p,
+body.dark-mode .register-panel .form-label,
+body.dark-mode .register-panel .navbar-brand {
+    color: #F3F4F6 !important;
+}
+
+body.dark-mode .register-link,
+body.dark-mode .login-link {
+    color: #D1D5DB !important;
+}
+
+/* Stat number in dark mode */
+body.dark-mode .stat-number {
+    color: #F97316 !important;
+}
+
+/* Section headings with inline styles use --charcoal-brown which auto-adapts */
+
+/* Gallery dark mode */
+body.dark-mode .filter-btn {
+    color: #F9FAFB;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .filter-btn.active,
+body.dark-mode .filter-btn:hover {
+    background: var(--primary-gradient);
+    color: #fff;
+}
+
+/* Contact info cards */
+body.dark-mode .contact-info-card {
+    background: rgba(31, 41, 55, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .contact-info-card h4,
+body.dark-mode .contact-info-card p,
+body.dark-mode .contact-info-card a {
+    color: #F3F4F6 !important;
+}
+
+/* Dashboard dark mode */
+body.dark-mode .sidebar-panel {
+    background: linear-gradient(180deg, #111827 0%, #1F2937 100%) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .sidebar-panel .user-name,
+body.dark-mode .sidebar-panel .nav-item,
+body.dark-mode .sidebar-panel .logo-text {
+    color: #F3F4F6 !important;
+}
+
+body.dark-mode .main-content {
+    background: #111827 !important;
+}
+
+body.dark-mode .content-header {
+    background: rgba(31, 41, 55, 0.95) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .dashboard-card {
+    background: #1F2937 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .card-title,
+body.dark-mode .card-value {
+    color: #F3F4F6 !important;
+}
+
+body.dark-mode .card-description,
+body.dark-mode .progress-text {
+    color: #9CA3AF !important;
+}
+
+body.dark-mode .activity-panel {
+    background: #1F2937 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .panel-title {
+    color: #F3F4F6 !important;
+}
+
+body.dark-mode .panel-header {
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .activity-item {
+    background: #111827 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .activity-title {
+    color: #F3F4F6 !important;
+}
+
+body.dark-mode .activity-time {
+    color: #9CA3AF !important;
+}
+
+body.dark-mode .btn-header {
+    background: rgba(31, 41, 55, 0.9) !important;
+    color: #F3F4F6 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .breadcrumb {
+    color: #9CA3AF !important;
+}
+
+body.dark-mode .progress-bar {
+    background: #374151 !important;
+}
+
+/* Footer dark mode — footer is already dark, so text must stay light */
+body.dark-mode .footer {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%) !important;
+    border-top-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+body.dark-mode .footer h5 {
+    color: #F9FAFB !important;
+}
+
+body.dark-mode .footer-brand {
+    color: #F9FAFB !important;
+}
+
+body.dark-mode .footer p,
+body.dark-mode .footer li,
+body.dark-mode .footer span {
+    color: #D1D5DB !important;
+}
+
+body.dark-mode .footer a {
+    color: #D1D5DB !important;
+}
+
+body.dark-mode .footer a:hover {
+    color: #F97316 !important;
+}
+
+body.dark-mode .footer .social-icons a {
+    color: #F9FAFB !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+body.dark-mode .footer .social-icons a:hover {
+    background: var(--accent-gradient) !important;
+    color: #fff !important;
+}
+
+body.dark-mode .footer-bottom {
+    border-top-color: rgba(255, 255, 255, 0.08) !important;
+    color: #9CA3AF !important;
+}
+
+body.dark-mode .footer-bottom p {
+    color: #9CA3AF !important;
 }
 
 /* Animated Background */
@@ -338,6 +701,10 @@ a:hover {
     border-top: 1px solid var(--gray-800);
 }
 
+.footer p {
+    color: #D1D5DB;
+}
+
 .footer h5 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -404,11 +771,15 @@ a:hover {
 }
 
 .footer-bottom {
-    border-top: 1px solid var(--gray-800);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     padding-top: var(--spacing-lg);
     margin-top: var(--spacing-lg);
     text-align: center;
-    color: var(--gray-400);
+    color: #D1D5DB;
+}
+
+.footer-bottom p {
+    color: #D1D5DB;
 }
 
 /* ============================================
@@ -722,70 +1093,37 @@ a:hover {
     }
 }
 
-/* Single row navbar for 1440*900 viewport */
-@media (min-width: 1440px) {
-    .navbar {
-        padding: 0.5rem 0;
-        height: 80px;
-        display: flex;
-        align-items: center;
-    }
-
+/* Desktop navbar layout for screens 1101px and above */
+@media (min-width: 1101px) {
     .navbar .container {
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
-        max-width: 1440px !important;
-        width: 100% !important;
-        padding: 0 40px !important;
+        flex-wrap: nowrap !important;
     }
 
     .navbar-brand {
-        position: absolute !important;
-        left: 40px !important;
-        margin: 0 !important;
-        z-index: 100 !important;
+        flex-shrink: 0;
+        margin-right: var(--spacing-lg) !important;
     }
 
-    .navbar-collapse {
+    .navbar-desktop-menu {
+        flex: 1;
         display: flex !important;
-        justify-content: center !important;
-        width: 100% !important;
-        flex-basis: auto !important;
-        position: static !important;
-        transform: none !important;
+        justify-content: flex-end !important;
     }
 
-    .navbar-nav {
+    .navbar-desktop-menu .navbar-nav {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
-        justify-content: center !important;
-        gap: 20px !important;
-        /* Balanced gap */
-        margin: 0 !important;
-        width: auto !important;
+        gap: 0.25rem !important;
         white-space: nowrap !important;
+        flex-wrap: nowrap !important;
     }
 
-    /* Center Group (Home through Contact) */
-    .navbar-nav .nav-item:nth-child(-n+7) {
-        position: static !important;
-        margin: 0 !important;
-    }
-
-    /* Right Utility Group (8: Dashboard, 9: Login, 10: Theme) */
-    .navbar-nav .nav-item:nth-child(8),
-    .navbar-nav .nav-item:nth-child(9),
-    .navbar-nav .nav-item:nth-child(10) {
-        margin: 0 !important;
-    }
-
-    .navbar-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        gap: 1.5rem !important;
+    .navbar .offcanvas {
+        display: none !important;
     }
 
     .navbar-toggler {
@@ -793,27 +1131,6 @@ a:hover {
     }
 }
 
-/* Manual Desktop State for 1101px and above */
-@media (min-width: 1101px) {
-    .navbar-desktop-menu {
-        display: block !important;
-    }
-
-    .navbar .navbar-toggler {
-        display: none !important;
-    }
-
-    .navbar .offcanvas {
-        display: none !important;
-    }
-
-    .navbar .navbar-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        gap: 1rem !important;
-    }
-}
 
 /* ============================================
    RIGHT-SIDE OFFCANVAS & ALIGNMENT OVERRIDES (1100px BREAKPOINT)
