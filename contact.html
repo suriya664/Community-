@@ -79,6 +79,9 @@
             padding: var(--spacing-lg);
             box-shadow: var(--shadow-gentle);
             border: 1px solid rgba(191, 168, 138, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .support-info {
@@ -88,6 +91,8 @@
             box-shadow: var(--shadow-gentle);
             height: 100%;
             border: 1px solid rgba(191, 168, 138, 0.2);
+            display: flex;
+            flex-direction: column;
         }
 
         .support-item {
@@ -122,23 +127,21 @@
         .support-content p {
             margin: 0;
             color: var(--charcoal-brown);
-            opacity: 0.8;
         }
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <i class="fas fa-calendar-check"></i> Activity Hub
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+
+            <!-- Desktop Navigation Menu -->
+            <div class="navbar-desktop-menu">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
@@ -148,7 +151,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="events.html">Events</a>
                     </li>
@@ -163,20 +165,70 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard.html" title="Dashboard">
-                            <i class="fas fa-th-large"></i>
+                            <i class="fas fa-th-large"></i> Dashboard
                         </a>
                     </li>
-                    <li class="nav-item ms-lg-2">
-                        <a class="btn btn-primary" href="login.html">Login</a>
-                    </li>
-                    <li class="nav-item ms-lg-2">
-                        <button class="btn btn-outline-secondary" id="darkModeToggle">
-                            <i class="fas fa-moon"></i>
-                        </button>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-primary btn-sm" href="login.html">Login</a>
                     </li>
                 </ul>
             </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
+    </nav>
+
+    <!-- Offcanvas Overlay (Right Side) - Moved outside Nav for reliability -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mainNav" aria-labelledby="mainNavLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title fw-bold" id="mainNavLabel">
+                <i class="fas fa-calendar-check"></i> Activity Hub
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="home2.html">Home 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="events.html">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gallery.html">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blog.html">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="dashboard.html" title="Dashboard">
+                        <i class="fas fa-th-large"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item mt-3 mt-lg-0">
+                    <a class="btn btn-primary" href="login.html">Login</a>
+                </li>
+                <li class="nav-item mt-2 mt-lg-0">
+                    <button class="btn btn-outline-secondary" id="darkModeToggle">
+                        <i class="fas fa-moon"></i> Dark Mode
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
     </nav>
 
     <!-- Hero Section -->
@@ -197,7 +249,7 @@
                 <!-- Contact Form -->
                 <div class="col-lg-7">
                     <div class="contact-form">
-                        <h3 class="mb-4">Send us a Message</h3>
+                        <h3 class="mb-4 text-center">Send us a Message</h3>
                         <form id="contactForm">
                             <div class="mb-3">
                                 <label class="form-label">Your Name *</label>
@@ -227,7 +279,7 @@
                 <!-- Support Info -->
                 <div class="col-lg-5">
                     <div class="support-info">
-                        <h3 class="mb-4">Contact Information</h3>
+                        <h3 class="mb-4 text-center">Contact Information</h3>
 
                         <div class="support-item">
                             <div class="support-icon">
@@ -366,13 +418,13 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 mb-4">
+                <div class="col-md-4 mb-4">
                     <a href="index.html" class="footer-brand">
                         <i class="fas fa-calendar-check"></i> Activity Hub
                     </a>
                     <p>Your premier platform for activity registration and membership management.</p>
                 </div>
-                <div class="col-md-3 mb-4">
+                <div class="col-md-2 mb-4">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="about.html">About Us</a></li>

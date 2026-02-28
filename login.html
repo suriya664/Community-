@@ -48,7 +48,7 @@
         }
 
         .login-box {
-            background: rgba(244, 239, 230, 0.85);
+            background: rgba(244, 239, 230, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(191, 168, 138, 0.2);
@@ -62,15 +62,14 @@
         }
 
         .login-box h1 {
-            color: var(--charcoal-brown);
+            color: #2D2C2E !important;
             font-size: 2rem;
             margin-bottom: var(--spacing-sm);
             font-weight: 500;
         }
 
         .login-box p {
-            color: var(--charcoal-brown);
-            opacity: 0.8;
+            color: #2D2C2E !important;
             margin-bottom: var(--spacing-md);
         }
 
@@ -81,8 +80,9 @@
         }
 
         .login-form .form-label {
+            display: block;
             text-align: left;
-            color: var(--charcoal-brown);
+            color: #2D2C2E !important;
             font-weight: 500;
             margin-bottom: var(--spacing-xs);
         }
@@ -110,6 +110,9 @@
             box-shadow: var(--shadow-gentle);
             transition: all 0.4s ease;
             margin-bottom: var(--spacing-sm);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .btn-login:hover {
@@ -127,7 +130,6 @@
         .social-login p {
             margin-bottom: var(--spacing-sm);
             color: var(--charcoal-brown);
-            opacity: 0.8;
         }
 
         .social-buttons {
@@ -140,23 +142,30 @@
             flex: 1;
             padding: 12px;
             border-radius: var(--radius-md);
-            border: 1px solid rgba(191, 168, 138, 0.3);
-            background: rgba(244, 239, 230, 0.8);
-            color: var(--charcoal-brown);
+            border: none;
+            color: white !important;
             transition: all 0.4s ease;
             text-align: center;
+            font-weight: 600;
+        }
+
+        .social-btn.facebook {
+            background: #1877F2;
+        }
+
+        .social-btn.google {
+            background: #DB4437;
         }
 
         .social-btn:hover {
-            background: rgba(191, 168, 138, 0.2);
             transform: translateY(-2px);
-            border-color: var(--terracotta);
+            filter: brightness(1.1);
+            box-shadow: var(--shadow-md);
         }
 
         .register-link {
             margin-top: var(--spacing-sm);
-            color: var(--charcoal-brown);
-            opacity: 0.8;
+            color: #2D2C2E !important;
         }
 
         .register-link a {
@@ -185,12 +194,8 @@
             </button>
         </div>
         <div class="login-box">
-            <a href="index.html"
-                style="display: inline-block; margin-bottom: var(--spacing-md); text-decoration: none;">
-                <h3
-                    style="color: var(--charcoal-brown); font-family: 'Playfair Display', serif; font-weight: 600; margin: 0;">
-                    <i class="fas fa-calendar-check"></i> Activity Hub
-                </h3>
+            <a class="navbar-brand justify-content-center mb-4" href="index.html" style="color: #2D2C2E !important;">
+                <i class="fas fa-calendar-check"></i> Activity Hub
             </a>
             <h1>Login to Activity Hub</h1>
             <p>Welcome back! Please login to access your account.</p>
@@ -219,7 +224,7 @@
                 </div>
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-login w-50 mx-auto d-block">
+                    <button type="submit" class="btn btn-login w-100">
                         <i class="fas fa-lock"></i> Login
                     </button>
                 </div>

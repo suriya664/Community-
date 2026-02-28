@@ -57,7 +57,7 @@
         }
 
         .register-panel {
-            background: rgba(244, 239, 230, 0.85);
+            background: rgba(244, 239, 230, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(191, 168, 138, 0.2);
@@ -71,15 +71,14 @@
         }
 
         .register-panel h1 {
-            color: var(--charcoal-brown);
+            color: #2D2C2E !important;
             font-size: 2rem;
             margin-bottom: var(--spacing-sm);
             font-weight: 500;
         }
 
         .register-panel p {
-            color: var(--charcoal-brown);
-            opacity: 0.8;
+            color: #2D2C2E !important;
             margin-bottom: var(--spacing-md);
         }
 
@@ -124,7 +123,9 @@
         }
 
         .register-form .form-label {
-            color: var(--charcoal-brown);
+            display: block;
+            text-align: left;
+            color: #2D2C2E !important;
             font-weight: 500;
             margin-bottom: var(--spacing-xs);
         }
@@ -154,6 +155,9 @@
             box-shadow: var(--shadow-gentle);
             transition: all 0.4s ease;
             margin-top: var(--spacing-sm);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .btn-register:hover {
@@ -165,8 +169,7 @@
         .login-link {
             text-align: center;
             margin-top: var(--spacing-sm);
-            color: var(--charcoal-brown);
-            opacity: 0.8;
+            color: #2D2C2E !important;
         }
 
         .login-link a {
@@ -226,12 +229,9 @@
         </div>
         <div class="register-container">
             <div class="register-panel">
-                <a href="index.html"
-                    style="display: inline-block; margin-bottom: var(--spacing-md); text-decoration: none;">
-                    <h3
-                        style="color: var(--charcoal-brown); font-family: 'Playfair Display', serif; font-weight: 600; margin: 0;">
-                        <i class="fas fa-calendar-check"></i> Activity Hub
-                    </h3>
+                <a class="navbar-brand justify-content-center mb-4" href="index.html"
+                    style="color: #2D2C2E !important;">
+                    <i class="fas fa-calendar-check"></i> Activity Hub
                 </a>
                 <h1><i class="fas fa-user-plus"></i> Register for Activities</h1>
                 <p>Create your account and start exploring activities</p>
@@ -266,8 +266,7 @@
                     <div class="mb-4 text-start">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="termsCheck" required>
-                            <label class="form-check-label" for="termsCheck"
-                                style="color: var(--charcoal-brown); opacity: 0.9;">
+                            <label class="form-check-label" for="termsCheck" style="color: #2D2C2E !important;">
                                 I agree to the <a href="#"
                                     style="color: var(--terracotta); text-decoration: underline;">Terms & Conditions</a>
                                 and <a href="#" style="color: var(--terracotta); text-decoration: underline;">Privacy
@@ -277,7 +276,7 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-register w-75 mx-auto d-block">
+                        <button type="submit" class="btn btn-register w-100">
                             <i class="fas fa-calendar-check"></i> Register for Activities
                         </button>
                     </div>
@@ -286,10 +285,10 @@
                 <div class="social-login mt-4 pt-3 border-top">
                     <p>Or register with</p>
                     <div class="d-flex gap-2 justify-content-center">
-                        <button class="btn btn-outline-primary flex-grow-1">
+                        <button class="btn btn-primary flex-grow-1" style="background: #1877F2; border: none;">
                             <i class="fab fa-facebook-f"></i> Facebook
                         </button>
-                        <button class="btn btn-outline-danger flex-grow-1">
+                        <button class="btn btn-danger flex-grow-1" style="background: #DB4437; border: none;">
                             <i class="fab fa-google"></i> Google
                         </button>
                     </div>

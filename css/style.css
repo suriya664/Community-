@@ -17,8 +17,8 @@
     --accent-orange: #F97316;
     --accent-teal: #14B8A6;
     --accent-green: #10B981;
-    --terracotta: #E07A5F;
-    --charcoal-brown: #363537;
+    --terracotta: #C55D41;
+    --charcoal-brown: #2D2C2E;
 
     /* Neutral Palette */
     --white: #FFFFFF;
@@ -55,7 +55,7 @@
 
     /* Text Colors */
     --text-primary: #111827;
-    --text-secondary: #6B7280;
+    --text-secondary: #4B5563;
     --text-light: #F9FAFB;
     --text-accent: #4F46E5;
 
@@ -313,6 +313,10 @@ a:hover {
     color: #F9FAFB !important;
 }
 
+.navbar-desktop-menu {
+    display: none;
+}
+
 .navbar-toggler {
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
@@ -353,6 +357,7 @@ a:hover {
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-md);
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .footer-brand i {
@@ -474,6 +479,59 @@ a:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-xl);
     border-color: var(--primary-blue);
+}
+
+/* ============================================
+   UNIVERSAL CARD HEIGHT & FLEX ALIGNMENT
+   Ensures all card types have equal height in rows
+   ============================================ */
+.dashboard-card,
+.floating-card,
+.stat-card,
+.testimonial-card,
+.event-card,
+.member-card,
+.blog-card,
+.team-card,
+.glass-card,
+.modern-card {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Ensure card content/body can grow to push footer/action down */
+.dashboard-card>*:last-child,
+.floating-card>*:last-child,
+.stat-card>*:last-child,
+.testimonial-card>*:last-child,
+.event-card>*:last-child,
+.member-card>*:last-child,
+.blog-card>*:last-child,
+.team-card>*:last-child,
+.glass-card>*:last-child,
+.modern-card>*:last-child {
+    margin-top: auto;
+}
+
+/* Specific body/content tags to grow more naturally and align internally */
+.event-content,
+.blog-content,
+.member-info,
+.team-content,
+.card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Push links/buttons in content areas to the bottom */
+.event-content>*:last-child,
+.blog-content>*:last-child,
+.member-info>*:last-child,
+.team-content>*:last-child,
+.card-content>*:last-child {
+    margin-top: auto;
 }
 
 /* ============================================
@@ -675,9 +733,8 @@ a:hover {
 
     .navbar .container {
         display: flex !important;
-        justify-content: center !important;
+        justify-content: space-between !important;
         align-items: center !important;
-        position: relative !important;
         max-width: 1440px !important;
         width: 100% !important;
         padding: 0 40px !important;
@@ -721,31 +778,176 @@ a:hover {
     .navbar-nav .nav-item:nth-child(8),
     .navbar-nav .nav-item:nth-child(9),
     .navbar-nav .nav-item:nth-child(10) {
-        position: absolute !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
         margin: 0 !important;
-        z-index: 100 !important;
     }
 
-    .navbar-nav .nav-item:nth-child(10) {
-        right: 40px !important;
-        /* Theme toggle at the very edge */
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
     }
 
-    .navbar-nav .nav-item:nth-child(9) {
-        right: 110px !important;
-        /* Login button */
+    .navbar-toggler {
+        display: none !important;
+    }
+}
+
+/* Manual Desktop State for 1101px and above */
+@media (min-width: 1101px) {
+    .navbar-desktop-menu {
+        display: block !important;
     }
 
-    .navbar-nav .nav-item:nth-child(8) {
-        right: 230px !important;
-        /* Dashboard icon */
+    .navbar .navbar-toggler {
+        display: none !important;
+    }
+
+    .navbar .offcanvas {
+        display: none !important;
+    }
+
+    .navbar .navbar-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 1rem !important;
+    }
+}
+
+/* ============================================
+   RIGHT-SIDE OFFCANVAS & ALIGNMENT OVERRIDES (1100px BREAKPOINT)
+   ============================================ */
+@media (max-width: 1100px) {
+
+    /* Hide desktop menu on mobile */
+    .navbar-desktop-menu {
+        display: none !important;
+    }
+
+    /* 1. Force Toggler Visibility */
+    .navbar .navbar-toggler {
+        display: block !important;
+    }
+
+    /* 2. Hide standard collapse */
+    .navbar .navbar-collapse {
+        display: none !important;
+    }
+
+    /* 3. Force Offcanvas Sidebar (Right Side) */
+    .navbar .offcanvas.offcanvas-end,
+    #mainNav.offcanvas.offcanvas-end {
+        position: fixed !important;
+        bottom: 0 !important;
+        top: 0 !important;
+        right: 0 !important;
+        left: auto !important;
+        z-index: 1045 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 300px !important;
+        height: 100vh !important;
+        visibility: hidden !important;
+        background-color: var(--white) !important;
+        background-clip: padding-box !important;
+        outline: 0 !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transform: translateX(100%) !important;
+        border-left: 1px solid var(--glass-border) !important;
+        box-shadow: var(--shadow-2xl) !important;
+    }
+
+    .navbar .offcanvas.offcanvas-end.show,
+    #mainNav.offcanvas.offcanvas-end.show {
+        visibility: visible !important;
+        transform: none !important;
+    }
+
+    .navbar .offcanvas-header {
+        display: flex !important;
+        padding: var(--spacing-lg) !important;
+        border-bottom: 1px solid var(--gray-200) !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    .navbar .offcanvas-body {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: var(--spacing-lg) !important;
+        gap: var(--spacing-lg) !important;
+        overflow-y: auto !important;
+        align-items: flex-end !important;
+        /* RIGHT ALIGNMENT */
+    }
+
+    /* 4. Vertical and Right-Aligned Nav Links */
+    .navbar .navbar-nav {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        align-items: flex-end !important;
+        width: 100% !important;
+    }
+
+    .navbar-nav .nav-item {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
     }
 
     .navbar-nav .nav-link {
-        padding: 10px 15px !important;
-        white-space: nowrap !important;
+        padding: 0.75rem 0 !important;
+        width: 100% !important;
+        text-align: right !important;
+        /* RIGHT ALIGNMENT */
+        margin: 0 !important;
+        color: var(--text-primary) !important;
+    }
+
+    .navbar-nav .nav-link::before {
+        display: none !important;
+        /* Remove the hover effect from desktop */
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+        color: var(--primary-blue) !important;
+        background: transparent !important;
+    }
+
+    /* 4.5. Offcanvas Button Alignment & Width */
+    .offcanvas-body .btn {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: auto !important;
+        min-width: 160px !important;
+        max-width: 240px !important;
+        align-self: flex-end !important;
+        text-align: center !important;
+        margin-left: auto !important;
+        gap: 8px !important;
+    }
+
+    /* 5. GHOSTING FIX: Hide background brand when menu is open */
+    .navbar:has(.offcanvas.show) .navbar-brand {
+        opacity: 0 !important;
+    }
+
+    /* 6. ALIGNMENT PARITY (The "Gap" Fix) */
+    .container {
+        max-width: 1030px !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+
+/* Base parity for small screens */
+@media (max-width: 991.98px) {
+    .container {
+        max-width: 1030px !important;
     }
 }
 

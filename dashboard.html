@@ -498,9 +498,9 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 1024px) {
+        @media (max-width: 1100px) {
             .sidebar-panel {
-                width: 260px;
+                width: 280px;
                 position: fixed;
                 left: 0;
                 top: 0;
@@ -567,13 +567,24 @@
                 font-size: 1.5rem;
             }
         }
+
+        /* Sidebar Toggle Visibility */
+        .sidebar-toggler-btn {
+            display: none;
+        }
+
+        @media (max-width: 1100px) {
+            .sidebar-toggler-btn {
+                display: flex;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- Sidebar Toggle for Mobile -->
-    <button id="sidebar-toggle" class="d-lg-none"
-        style="position: fixed; top: 15px; left: 15px; z-index: 1050; width: 45px; height: 45px; border-radius: 12px; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); border: none; color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <button id="sidebar-toggle" class="sidebar-toggler-btn"
+        style="position: fixed; top: 15px; right: 15px; z-index: 1050; width: 45px; height: 45px; border-radius: 12px; background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); border: none; color: white; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
         <i class="fas fa-bars"></i>
     </button>
     <div id="sidebar-backdrop"
@@ -869,7 +880,7 @@
         // Close sidebar on navigation item click (on mobile)
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', function () {
-                if (window.innerWidth <= 1024) {
+                if (window.innerWidth <= 1100) {
                     toggleSidebar();
                 }
             });
