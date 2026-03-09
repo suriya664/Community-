@@ -17,7 +17,7 @@
     <style>
         /* Blog Page - Same Pattern as Home */
         .hero-section {
-            min-height: 60vh;
+            min-height: 35vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -106,7 +106,7 @@
             border: 1px solid rgba(191, 168, 138, 0.2);
             border-radius: var(--radius-lg);
             overflow: hidden;
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: 1rem;
             transition: all 0.5s ease;
             color: var(--charcoal-brown);
             box-shadow: var(--shadow-gentle);
@@ -120,49 +120,135 @@
 
         .blog-image {
             width: 100%;
-            height: 250px;
+            height: 200px;
             object-fit: cover;
         }
 
         .blog-content {
-            padding: var(--spacing-md);
+            padding: 0.75rem 1rem;
         }
 
         .blog-meta {
             display: flex;
             gap: var(--spacing-md);
-            margin-bottom: var(--spacing-sm);
-            font-size: 0.9rem;
+            margin-bottom: 0.35rem;
+            font-size: 0.85rem;
         }
 
         .blog-tag {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 3px 10px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 12px;
-            font-size: 0.85rem;
-            margin-right: 5px;
+            font-size: 0.8rem;
+            margin-right: 4px;
+            margin-bottom: 0.35rem;
         }
 
         .blog-title {
-            font-size: 1.75rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: var(--spacing-sm);
+            margin-bottom: 0.35rem;
+            margin-top: 0.25rem;
             color: var(--gray-900);
         }
 
         .blog-excerpt {
             opacity: 1;
-            margin-bottom: var(--spacing-sm);
-            line-height: 1.8;
+            margin-bottom: 0.4rem;
+            line-height: 1.6;
             color: var(--gray-800);
-            font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .read-more {
-            color: var(--text-light);
+            color: var(--primary-blue);
             font-weight: 600;
-            text-decoration: underline;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--accent-orange);
+        }
+
+        /* Force footer to be fully visible */
+        .footer {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            position: relative !important;
+            z-index: 10 !important;
+            margin-top: 2rem !important;
+            background: linear-gradient(135deg, #1F2937 0%, #111827 100%) !important;
+            color: #F9FAFB !important;
+            padding: 3rem 0 1.5rem !important;
+            border-top: 1px solid #374151 !important;
+        }
+
+        .footer p,
+        .footer li,
+        .footer span {
+            color: #D1D5DB !important;
+        }
+
+        .footer h5 {
+            color: #ffffff !important;
+            font-weight: 600 !important;
+            margin-bottom: 1rem !important;
+        }
+
+        .footer a {
+            color: #D1D5DB !important;
+            text-decoration: none !important;
+        }
+
+        .footer a:hover {
+            color: #F97316 !important;
+        }
+
+        .footer-brand {
+            color: #ffffff !important;
+            font-size: 1.4rem !important;
+            font-weight: 700 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            margin-bottom: 1rem !important;
+            text-decoration: none !important;
+        }
+
+        .footer-brand i {
+            color: #4F46E5 !important;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151 !important;
+            margin-top: 2rem !important;
+            padding-top: 1rem !important;
+            text-align: center !important;
+        }
+
+        .footer-bottom p {
+            color: #9CA3AF !important;
+            margin: 0 !important;
+        }
+
+        .footer .social-icons a {
+            display: inline-flex !important;
+            width: 38px !important;
+            height: 38px !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-radius: 50% !important;
+            margin-right: 8px !important;
+            color: #ffffff !important;
+            transition: background 0.3s ease !important;
+        }
+
+        .footer .social-icons a:hover {
+            background: #4F46E5 !important;
         }
     </style>
 </head>
@@ -264,8 +350,6 @@
             </ul>
         </div>
     </div>
-    </div>
-    </nav>
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -279,9 +363,9 @@
     </section>
 
     <!-- Trending Posts Section -->
-    <section class="section-padding">
+    <section class="py-4">
         <div class="container text-center">
-            <h2 class="mb-5" style="color: var(--charcoal-brown);">Trending This Week</h2>
+            <h2 class="mb-3" style="color: var(--charcoal-brown);">Trending This Week</h2>
             <div class="row g-4 justify-content-center">
                 <div class="col-md-4">
                     <div class="modern-card">
@@ -312,7 +396,7 @@
     </section>
 
     <!-- Category Tabs -->
-    <section class="section-padding section-bg">
+    <section class="py-4 section-bg">
         <div class="container">
             <div class="category-tabs">
                 <span class="category-tab active">All Posts</span>
@@ -325,9 +409,9 @@
     </section>
 
     <!-- Latest Post Section -->
-    <section class="section-padding">
+    <section class="py-4">
         <div class="container">
-            <h2 class="text-center mb-5" style="color: var(--charcoal-brown);">Latest Posts</h2>
+            <h2 class="text-center mb-3" style="color: var(--charcoal-brown);">Latest Posts</h2>
 
             <!-- Two Column Layout -->
             <div class="row">
@@ -401,31 +485,18 @@
                     <!-- Recent Posts -->
                     <div class="blog-card mb-4">
                         <div class="blog-content">
-                            <h4 style="margin-bottom: var(--spacing-md); color: var(--charcoal-brown);">Recent Posts
-                            </h4>
+                            <h4 class="sidebar-heading">Recent Posts</h4>
                             <div class="mb-3">
-                                <a href="#"
-                                    style="color: var(--charcoal-brown); font-weight: 600; text-decoration: none;">Welcome
-                                    to Our New Platform</a>
-                                <p
-                                    style="font-size: 0.85rem; color: var(--charcoal-brown); opacity: 0.7; margin-top: 5px;">
-                                    Dec 10, 2024</p>
+                                <a href="#" class="recent-post-link">Welcome to Our New Platform</a>
+                                <p class="recent-post-date">Dec 10, 2024</p>
                             </div>
                             <div class="mb-3">
-                                <a href="#"
-                                    style="color: var(--charcoal-brown); font-weight: 600; text-decoration: none;">5
-                                    Tips for Community Events</a>
-                                <p
-                                    style="font-size: 0.85rem; color: var(--charcoal-brown); opacity: 0.7; margin-top: 5px;">
-                                    Dec 5, 2024</p>
+                                <a href="#" class="recent-post-link">5 Tips for Community Events</a>
+                                <p class="recent-post-date">Dec 5, 2024</p>
                             </div>
                             <div class="mb-3">
-                                <a href="#"
-                                    style="color: var(--charcoal-brown); font-weight: 600; text-decoration: none;">Building
-                                    Stronger Connections</a>
-                                <p
-                                    style="font-size: 0.85rem; color: var(--charcoal-brown); opacity: 0.7; margin-top: 5px;">
-                                    Nov 28, 2024</p>
+                                <a href="#" class="recent-post-link">Building Stronger Connections</a>
+                                <p class="recent-post-date">Nov 28, 2024</p>
                             </div>
                         </div>
                     </div>
@@ -433,7 +504,7 @@
                     <!-- Categories -->
                     <div class="blog-card">
                         <div class="blog-content">
-                            <h4 style="margin-bottom: var(--spacing-md);">Categories</h4>
+                            <h4 class="sidebar-heading">Categories</h4>
                             <div style="display: flex; flex-wrap: wrap; gap: 8px;">
                                 <span class="blog-tag">Community (12)</span>
                                 <span class="blog-tag">Events (8)</span>
